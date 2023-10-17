@@ -4,3 +4,9 @@ I. Setup IP
 
 🌞 Mettez en place une configuration réseau fonctionnelle entre les deux machines
 
+
+
+
+
+
+
