@@ -135,3 +135,58 @@ IV. Wireshark
 
 🌞 Utilisez le pour observer les trames qui circulent entre vos deux carte Ethernet. Mettez en évidence :
 
+>Nom :  
+>Carte réseau sans fil Wi-Fi  
+>Adresses IP :   
+>10.33.48.115  
+>Adresse MAC :   
+>F4-C8-8A-E2-B6-BB
+>Gateway/Passerelle :  
+>10.33.51.254
+>Adresse MAC Passerelle :  
+>7c-5a-1c-cb-fd-a4  
+ ### 2. Modifications des informations
+ >Changement de l'adresse IP avec l'interface graphique.
+
+ ## DNS
+
+ ``` 
+ >ipconfig /all
+ Serveur DHCP . . . . . . . . . . . . . : 192.168.45.151
+ ```
+
+ ```
+>nslookup google.com
+Serveur :   UnKnown
+Address:  192.168.45.151
+
+Réponse ne faisant pas autorité :
+Nom :    google.com
+Addresses:  2a00:1450:4007:80c::200e
+          172.217.20.174
+
+>nslookup ynov.com
+Serveur :   UnKnown
+Address:  192.168.45.151
+
+Réponse ne faisant pas autorité :
+Nom :    ynov.com
+Addresses:  2606:4700:20::681a:ae9
+          2606:4700:20::ac43:4ae2
+          2606:4700:20::681a:be9
+          104.26.11.233
+          172.67.74.226
+          104.26.10.233
+
+PS C:\WINDOWS\system32> nslookup 231.34.113.12
+Serveur :   UnKnown
+Address:  192.168.45.151
+
+*** UnKnown ne parvient pas à trouver 231.34.113.12 : Non-existent domain
+>nslookup 78.34.2.17
+Serveur :   UnKnown
+Address:  192.168.45.151
+
+Nom :    cable-78-34-2-17.nc.de
+Address:  78.34.2.17
+ ```
