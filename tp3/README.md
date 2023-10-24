@@ -64,3 +64,5 @@ rtt min/avg/max/mdev = 2.054/3.133/4.419/0.976 ms
 10.3.1.1 dev enp0s3 lladdr 0a:00:27:00:00:06 REACHABLE
 10.3.1.12 dev enp0s3 lladdr 08:00:27:59:53:6f REACHABLE
 ```
+
+[capture réseau ARP request/reply](./ping.pcapng)
