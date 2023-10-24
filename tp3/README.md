@@ -65,4 +65,10 @@ rtt min/avg/max/mdev = 2.054/3.133/4.419/0.976 ms
 10.3.1.12 dev enp0s3 lladdr 08:00:27:59:53:6f REACHABLE
 ```
 
-[capture réseau ARP request/reply](./ping.pcapng)
+[capture réseau ARP request/reply](tp3_arp.pcapng)
+
+## II. Routage
+
+1. Mise en place du routage
+
+🌞Ajouter les routes statiques nécessaires pour que john et marcel puissent se ping
