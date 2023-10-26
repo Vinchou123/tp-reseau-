@@ -1,6 +1,5 @@
 # TP2 : Ethernet, IP, et ARP
 
-I. Setup IP
 
 🌞 Mettez en place une configuration réseau fonctionnelle entre les deux machines
 
@@ -115,7 +114,7 @@ Interface : 172.17.176.1 --- 0x3a
   255.255.255.255       ff-ff-ff-ff-ff-ff     statique
 
   🌞 Manipuler la table ARP
-  
+
 > arp -d
 
 
