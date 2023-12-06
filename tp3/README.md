@@ -73,3 +73,5 @@ rtt min/avg/max/mdev = 2.054/3.133/4.419/0.976 ms
 
 🌞Ajouter les routes statiques nécessaires pour que john et marcel puissent se ping
 
+
+
