@@ -171,3 +171,30 @@ ynov.com.               300     IN      A       104.26.11.233
 ```
 PS C:\Users\vince> nslookup john.tp6.b1 dns.tp6
 ```
+
+🌞 Installer un serveur DHCP
+
+```bash
+[vince@dhcp ~]$ sudo cat /etc/dhcp/dhcpd.conf
+# create new
+# specify domain name
+option domain-name     "dhcp.tp6";
+# specify DNS server's hostname or IP address
+option domain-name-servers     10.6.1.101;
+# default lease time
+default-lease-time 600;
+# max lease time
+max-lease-time 7200;
+# this DHCP server to be declared valid
+authoritative;
+# specify network address and subnetmask
+subnet 10.6.1.0 netmask 255.255.255.0 {
+    # specify the range of lease IP address
+    range dynamic-bootp 10.6.1.13 10.6.1.37;
+    # specify broadcast address
+    option broadcast-address 10.6.1.255;
+    # specify gateway
+    option routers 10.6.1.254;
+
+```
+
