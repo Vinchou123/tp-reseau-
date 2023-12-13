@@ -120,6 +120,67 @@ rtt min/avg/max/mdev = 2.054/3.133/4.419/0.976 ms
 
 🌞Ajouter les routes statiques nécessaires pour que john et marcel puissent se ping
 
+```
+[vince@Marcel ~]$ ping 10.3.1.11
+PING 10.3.1.11 (10.3.1.11) 56(84) bytes of data.
+64 bytes from 10.3.1.11: icmp_seq=1 ttl=63 time=3.81 ms
+64 bytes from 10.3.1.11: icmp_seq=2 ttl=63 time=5.34 ms
+```
 
 
+## 2. Analyse de trames
 
+🌞**Analyse des échanges ARP**
+
+- videz les tables ARP des trois noeuds
+- effectuez un `ping` de `john` vers `marcel`
+- essayez de déduire les échanges ARP qui ont eu lieu
+  - en regardant les tables ARP des 3 machines
+  - en lançant `tcpdump` pour capturer le trafic et l'analyser
+- **écrivez, dans l'ordre, les échanges ARP qui ont eu lieu, puis le ping et le pong, je veux TOUTES les trames** utiles pour l'échange (ARP et ping/pong)
+
+Par exemple (copiez-collez ce tableau ce sera le plus simple) :
+
+| ordre | type trame  | IP source | MAC source                | IP destination | MAC destination            |
+| ----- | ----------- | --------- | ------------------------- | -------------- | -------------------------- |
+| 1     | Requête ARP | x         | `marcel` `AA:BB:CC:DD:EE` | x              | Broadcast `FF:FF:FF:FF:FF` |
+| 2     | Réponse ARP | x         | ?                         | x              | `marcel` `AA:BB:CC:DD:EE`  |
+| ...   | ...         | ...       | ...                       |                |                            |
+| ?     | Ping        | ?         | ?                         | ?              | ?                          |
+| ?     | Pong        | ?         | ?                         | ?              | ?                          |
+
+## 3. Accès internet
+
+🌞**Donnez un accès internet à vos machines** - config routeur
+
+- ajoutez une carte NAT (dans l'interface de Virtualbox) en 3ème inteface sur le `router` pour qu'il ait un accès internet
+- une fois que c'est fait, vérifiez qu'il a bien un accès internet
+- sous Rocky...
+  - pour autoriser le routeur à router des paquets vers internet, et faire ça propre, ça nécessite quelques manips
+  - pour qu'il agisse comme un routeur normal quoi
+  - référez-vous au [mémo Rocky](../../cours/memo/rocky_network.md)
+
+🌞**Donnez un accès internet à vos machines** - config clients
+
+- ajoutez une route par défaut à `john` et `marcel` (voir [le mémo Rocky](../../cours/memo/rocky_network.md))
+  - vérifiez que vous avez accès internet avec un `ping`
+  - le `ping` doit être vers une IP, PAS un nom de domaine
+- donnez leur aussi l'adresse d'un serveur DNS qu'ils peuvent utiliser (voir [mémo Rocky](../../cours/memo/rocky_network.md))
+  - `ping` vers un nom de domaine pour vérifier la résolution de nom
+
+🌞**Analyse de trames**
+
+- effectuez un `ping` depuis `john` vers `marcel`
+- capturez le ping depuis `router` avec `tcpdump`
+  - faites deux captures : une sur chaque interface du routeur (celle qui est dans le LAN1 et celle qui est dans le LAN2)
+- analysez un ping aller et le retour qui correspond et mettez dans un tableau :
+
+| ordre | type trame | IP source            | MAC source                | IP destination | MAC destination |     |
+| ----- | ---------- | -------------------- | ------------------------- | -------------- | --------------- | --- |
+| 1     | ping       | `marcel` `10.3.1.12` | `marcel` `AA:BB:CC:DD:EE` | `8.8.8.8`      | ?               |     |
+| 2     | pong       | ...                  | ...                       | ...            | ...             | ... |
+
+> Avec les deux captures vous devez observer 4 trames pour chaque ping échangé : 1) trame ping entre `john` et `router` (capture1) 2) trame ping entre `router` et `marcel` (capture2) 3) trame pong entre `marcel` et `router` (capture1) 4) trame pong entre `router` et `john` (capture2)
+
+🦈 **Capture réseau `tp3_routage_lan1.pcapng`**  
+🦈 **Capture réseau `tp3_routage_lan2.pcapng`**
